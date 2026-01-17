@@ -1,0 +1,157 @@
+#gemini-nav-panel {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  padding: 12px;
+  z-index: 99999;
+  font-family: "Google Sans", "Segoe UI", sans-serif;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: auto;
+  /* 确保不被遮罩拦截 */
+}
+
+/* 目录容器 - 核心逻辑重构 */
+#gemini-nav-scroll,
+.directory-container {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #dadce0 transparent;
+  padding-bottom: 20px;
+  /* 给最后一条留出呼吸空间 */
+  transition: -webkit-mask-image 0.3s ease;
+}
+
+/* 应用渐变遮罩的类名 */
+#gemini-nav-scroll.has-mask,
+.directory-container.has-mask {
+  -webkit-mask-image: linear-gradient(to bottom,
+      black 85%,
+      transparent 100%);
+  mask-image: linear-gradient(to bottom,
+      black 85%,
+      transparent 100%);
+}
+
+/* 鼠标悬停时取消遮罩，方便用户看清最后一条 */
+#gemini-nav-scroll:hover,
+.directory-container:hover {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+#gemini-nav-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+#gemini-nav-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#gemini-nav-scroll::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  border-radius: 10px;
+}
+
+#gemini-nav-scroll::-webkit-scrollbar-thumb:hover {
+  background: #bdc1c6;
+}
+
+#gemini-nav-panel:hover,
+#gemini-nav-panel.visible {
+  opacity: 1;
+}
+
+#gemini-nav-panel.idle {
+  opacity: 0.3;
+}
+
+.gemini-nav-item,
+.directory-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  margin: 4px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  background: #f8f9fa;
+  pointer-events: auto;
+  /* 消除点击死区 */
+}
+
+/* 针对限制之外的条目进行物理隐藏 */
+.gemini-nav-item:nth-child(n+13) {
+  display: none !important;
+}
+
+.gemini-nav-item:hover {
+  background: #e8eaed;
+}
+
+.gemini-nav-item.active {
+  background: transparent;
+}
+
+.gemini-nav-item-text {
+  flex: 1;
+  font-size: 14px;
+  color: #202124;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 8px;
+}
+
+.gemini-nav-item.active .gemini-nav-item-text {
+  color: #1a73e8;
+  font-weight: 500;
+}
+
+.gemini-nav-item-remove {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #5f6368;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.gemini-nav-item.active .gemini-nav-item-remove {
+  color: #1a73e8;
+}
+
+.gemini-nav-item-remove:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.gemini-nav-empty {
+  text-align: center;
+  color: #80868b;
+  font-size: 13px;
+  padding: 16px 8px;
+}
+
+/* 数量限制提示 */
+.gemini-nav-limit-hint {
+  font-size: 11px;
+  color: #9aa0a6;
+  text-align: center;
+  padding: 8px 0;
+  border-top: 1px solid #f1f3f4;
+  margin-top: 8px;
+}
