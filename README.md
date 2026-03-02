@@ -1,107 +1,156 @@
-# AI Navigator by Ning Li
+# JumpAI
 
-[中文] | [English]
+这是一个 AI 对话快速跳转浏览器扩展，用于提升多模型长对话场景下的浏览与定位效率，适用于 ChatGPT、Gemini、Kimi、通义千问、豆包等主流 AI 平台。
 
----
+## 功能特点
 
-## Preview / 预览
+- **悬浮式导航面板** - 在页面右侧提供导航面板，默认半隐藏，鼠标悬停即可展开，不影响正常阅读
+- **智能识别问题** - 自动通过选择器识别并汇总用户提出的每一条问题，生成清晰的对话索引列表
+- **快速跳转** - 点击任意条目即可平滑滚动至对应对话位置，实现快速跳转
+- **自动高亮** - 实时检测当前可视区域，对正在阅读的对话项进行自动高亮，帮助用户保持上下文感知
+- **手动隐藏** - 用户可根据需要手动隐藏不重要的导航项，保持面板简洁
+- **实时更新** - 支持定时检测新消息，在对话持续增长时自动更新导航内容，无需刷新页面
 
-| ChatGPT | Gemini |
-| :---: | :---: |
-| ![ChatGPT](assets/screenshots/demo-ChatGPT.jpg) | ![Gemini](assets/screenshots/demo-Gemini.jpg) |
+## 支持平台
 
-| Grok | Khoj |
-| :---: | :---: |
-| ![Grok](assets/screenshots/demo-Grok.jpg) | ![Khoj](assets/screenshots/demo-Khoj.jpg) |
+| 平台 | 网址 |
+|------|------|
+| **ChatGPT** | chatgpt.com / chat.openai.com |
+| **Gemini** | gemini.google.com |
+| **Kimi** | kimi.com / www.kimi.com / kimi.moonshot.cn |
+| **通义千问** | tongyi.aliyun.com / qianwen.com |
+| **豆包** | doubao.com / www.doubao.com |
 
----
+## 安装方法
 
-## Project Overview / 项目简介
+### Chrome / Edge
+1. 打开浏览器，访问 `chrome://extensions/`（Edge 访问 `edge://extensions/`）
+2. 开启右上角的 **开发者模式**
+3. 点击 **加载已解压的扩展程序**
+4. 选择插件文件夹
 
-**Gemini & AI Navigator** 是一款专为 AI 对话设计的增强型浏览器扩展。它能够自动识别并提取 Gemini、Khoj (app.khoj.dev)、ChatGPT 和 Grok 页面中的对话内容，并在右侧生成一个智能悬浮目录。该项目旨在解决长对话场景下频繁翻找、上下文定位困难的痛点，显著提升阅读、调试与知识整理的效率。
+### Firefox
+1. 访问 `about:debugging#/runtime/this-firefox`
+2. 点击 **加载临时附加组件**
+3. 选择 `manifest.json` 文件
 
-**Gemini & AI Navigator** is an enhanced browser extension designed specifically for AI-driven conversations. It automatically identifies and extracts content from Gemini, Khoj (app.khoj.dev), ChatGPT, and Grok pages to generate an intelligent floating navigation sidebar. This project aims to address the pain points of navigating through long conversations and locating specific context, significantly improving the efficiency of reading, debugging, and knowledge organization.
+## 使用说明
 
----
-
-## Key Features / 核心功能
-
-*   **Map-Based Precise Deduplication / 基于 Map 对象的精准去重**
-    使用 Map 算法以对话标题为键进行底层重构，确保在 Khoj 等动态加载页面上目录依然保持唯一，彻底拒绝重复项。  
-    *Infrastructure refactored with a Map object (using titles as keys) to ensure directory uniqueness, effectively eliminating redundancies on dynamic sites like Khoj.*
-
-*   **Intelligent 12-Item Constraint / 智能 12 条显示上限**
-    自动保留最新 12 条对话，并配合优雅的底部 CSS 渐变遮罩（Gradient Mask），确保 UI 简洁专业且不遮挡页面内容。  
-    *Automatically retains the 12 most recent items, paired with an elegant CSS gradient mask to maintain a clean, professional UI without obscuring page content.*
-
-*   **SPA-Aware Route Monitoring / 针对单页应用的路由监听**
-    内置单页应用（SPA）路由感知逻辑，无需手动刷新页面即可在对话切换时实时更新目录状态。  
-    *Includes built-in Single Page Application (SPA) route sensing, enabling real-time directory updates during conversation switches without requiring a page refresh.*
-
-*   **Robust Smooth-Scroll Jump / 鲁棒的平滑滚动跳转**
-    针对异步加载场景优化的跳转逻辑，配合 100ms 智能延迟与居中对齐排布，确保每次点击都能精准定位到目标位置。  
-    *Optimized jump logic for asynchronous loading scenarios, utilizing a 100ms intelligent delay and centered alignment to ensure precision with every click.*
-
----
-
-## User Guide / 用户使用指南
-
-### 1. 安装插件 (Installation)
-1.  **下载源码 / Download Source**：将本项目文件夹（包含 `manifest.json`）保存到本地。  
-    *Save this project folder (containing `manifest.json`) to your local machine.*
-2.  **进入管理面试 / Extensions Page**：在 Chrome 地址栏访问 `chrome://extensions/`。  
-    *Navigate to `chrome://extensions/` in your Chrome browser.*
-3.  **开启开发者模式 / Developer Mode**：确保右上角的“开发者模式”开关已打开。  
-    *Ensure the "Developer mode" switch in the top right is turned on.*
-4.  **加载程序 / Load Unpacked**：点击“加载已解压的扩展程序”，选择本项目文件夹。  
-    *Click "Load unpacked" and select this project folder.*
-
-### 2. 配置 API Key (Configuration)
-为了安全起见，官方发布版不内置 API Key，您需要使用自己的 Key：  
-*For security, the official release does not include an API Key. You must use your own:*
-1.  **获取 Key / Get Key**：前往 [Google AI Studio](https://aistudio.google.com/app/apikey) 免费申请。  
-    *Request a free API Key from [Google AI Studio](https://aistudio.google.com/app/apikey).*
-2.  **进入设置 / Settings**：在 Chrome 扩展程序列表中找到 **AI Navigator**，点击“详细信息” -> “扩展程序选项”。  
-    *Find **AI Navigator** in the extensions list, click "Details" -> "Extension options".*
-3.  **保存 Key / Save Key**：在设置页面粘贴您的 API Key 并点击 **Save Changes**。  
-    *Paste your key into the settings page and click **Save Changes**. Your key is stored securely in your browser.*
-
-### 3. 使用方法 (How to Use)
-1.  **打开 AI 页面 / Open AI Site**：访问 [Gemini](https://gemini.google.com/) 或 [ChatGPT](https://chatgpt.com/) 等支持的站点。  
-    *Visit supported sites like [Gemini](https://gemini.google.com/) or [ChatGPT](https://chatgpt.com/).*
-2.  **悬浮目录 / Navigation Panel**：当检测到对话时，右侧会自动出现半透明面板。  
-    *A semi-transparent panel will automatically appear on the right when conversations are detected.*
-    - **鼠标悬停 / Mouse Hover**：面板会自动展开显示完整标题。  
-      *The panel expands to show full titles upon hovering.*
-    - **点击跳转 / Click to Jump**：点击目录项，页面会自动平滑滚动到目标位置。  
-      *Click an item to smooth-scroll the page to that specific conversation.*
-    - **删除条目 / Hide Item**：点击条目右侧的 `−` 号可临时隐藏该项。  
-      *Click the `-` icon on the right to temporarily hide a navigation item.*
+- 插件会在对话页面右侧显示「快速导航」浮动面板
+- 鼠标悬停时面板完全显示，移开时半透明
+- 点击条目可平滑跳转到对应对话位置
+- 点击 **−** 按钮隐藏该条目
+- 当前位置会自动高亮显示
+- 图片消息会显示为 `[图片]`
 
 ---
 
-## Troubleshooting / 常见问题排查
+## 🔧 如何查看 DOM 选择器（详细教程）
 
-*   **Console Debugging / 控制台调试**：
-    由于采用了 `MutationObserver` 监控 DOM，你可以打开浏览器控制台查看 `[Gemini Nav]` 开头的日志，实时监控解析状态。  
-    *As the extension utilizes `MutationObserver` for DOM monitoring, you can open the console to view logs prefixed with `[Gemini Nav]` for real-time status updates.*
-*   **Why Jump is Reliable / 跳转为何如此可靠**：
-    重构后的逻辑直接关联了 DOM 引用，而非依赖不稳定的数组索引，结合居中对齐模式（`block: 'center'`），确保了滚动位置的确定性。  
-    *The refactored logic stores direct DOM references instead of relying on fragile indices. Combined with centered alignment (`block: 'center'`), it ensures deterministic scrolling.*
+如果插件无法识别用户消息，你需要手动查找正确的选择器。
+
+### 步骤 1：打开开发者工具
+- **快捷键**：按 `F12` 或 `Ctrl+Shift+I`（Mac: `Cmd+Option+I`）
+- 或右键页面 → 选择「检查」/「Inspect」
+
+### 步骤 2：选择元素
+1. 点击开发者工具左上角的 **选择元素按钮**（箭头图标）或按 `Ctrl+Shift+C`
+2. 在页面上点击你发送的 **用户消息**（不是 AI 回复）
+3. 开发者工具会自动定位到该元素的 HTML 代码
+
+### 步骤 3：分析元素特征
+在 Elements 面板中，找到用户消息的父容器，观察它的特征：
+
+```html
+<!-- 示例：假设你看到这样的结构 -->
+<div class="chat-message user-message" data-role="user">
+  <div class="message-content">你好</div>
+</div>
+```
+
+可以使用的选择器格式：
+- **class 属性**：`.user-message` 或 `[class*="user"]`（包含 user 的类名）
+- **data 属性**：`[data-role="user"]`
+- **组合选择器**：`.chat-message.user-message`
+
+### 步骤 4：测试选择器
+在开发者工具的 Console 面板中输入：
+```javascript
+document.querySelectorAll('你的选择器')
+```
+如果返回的元素数量等于你发送的消息数，说明选择器正确。
+
+### 步骤 5：更新代码
+打开 `content.js`，找到对应平台的 `selectors` 数组，添加新选择器：
+```javascript
+kimi: {
+  selectors: [
+    '你找到的新选择器',  // 添加到这里
+    // ... 其他选择器
+  ],
+}
+```
 
 ---
 
-## Technical Principles / 技术原理
+## 📦 插件上架指南
 
-1.  **Map Deduplication / Map 去重**：
-    遍历对话节点时，提取内容摘要作为 Key。若 Key 已存在，则直接跳过该节点并保留原始 DOM 引用在 Value 中，从而在数据源头完成去重。  
-    *When traversing conversation nodes, descriptions are extracted as Map keys. If a key exists, the node is skipped while the original DOM reference is maintained in the value, ensuring deduplication at the source.*
+### Chrome Web Store
 
-2.  **MutationObserver / DOM 监听**：
-    放弃了低效的 `setInterval` 轮询，采用 `MutationObserver` 深度监听对话容器的子树变更，实现毫秒级的响应式更新。  
-    *Replaced inefficient `setInterval` polling with `MutationObserver` to perform deep monitoring of the conversation container's subtree, achieving millisecond-level reactive updates.*
+1. **注册开发者账号**
+   - 访问 [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
+   - 需要支付 **$5 一次性注册费**（需要信用卡）
+
+2. **准备材料**
+   - 插件 ZIP 包（将整个文件夹打包）
+   - 128×128 图标
+   - 至少 1 张 1280×800 或 640×400 的截图
+   - 详细描述（支持多语言）
+
+3. **提交审核**
+   - 登录后点击「New Item」上传 ZIP
+   - 填写商品详情、截图、定价（免费）
+   - 提交审核，通常 1-3 个工作日
+
+### Microsoft Edge Add-ons
+
+1. **注册开发者账号**
+   - 访问 [Edge Add-ons Developer Dashboard](https://partner.microsoft.com/dashboard/microsoftedge)
+   - **免费注册**，使用 Microsoft 账号
+
+2. **准备材料**
+   - 与 Chrome 相同，Manifest V3 插件可直接使用
+   - 需要隐私政策 URL（可用 GitHub Gist 创建）
+
+3. **提交审核**
+   - 上传 ZIP，填写信息
+   - 审核时间约 1-7 个工作日
+
+### Firefox Add-ons (AMO)
+
+1. **注册开发者账号**
+   - 访问 [Firefox Add-on Developer Hub](https://addons.mozilla.org/developers/)
+   - **免费注册**，使用 Firefox 账号
+
+2. **修改 manifest.json**
+   Firefox 需要添加 `browser_specific_settings`：
+   ```json
+   {
+     "browser_specific_settings": {
+       "gecko": {
+         "id": "ai-chat-navigator@youremail.com",
+         "strict_min_version": "109.0"
+       }
+     }
+   }
+   ```
+
+3. **提交审核**
+   - 上传 ZIP，可选择「Listed」（公开）或「Unlisted」（仅链接访问）
+   - 自动审核通常几分钟，人工审核 1-2 周
 
 ---
 
-**Designed with precision for the AI-first workflow.**  
-**为 AI 优先的工作流精准打造。**
+## 许可证
+
+MIT License

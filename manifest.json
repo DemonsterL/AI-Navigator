@@ -1,29 +1,31 @@
 {
   "manifest_version": 3,
   "name": "AI Navigator",
-  "author": "Ning Li",
-  "version": "1.0.0",
-  "description": "Smart navigation sidebar for Gemini, ChatGPT, Grok, and Khoj conversations.",
-  "permissions": [
-    "activeTab",
-    "tabs",
-    "storage"
-  ],
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
-  },
-  "background": {
-    "service_worker": "background.js"
+  "version": "1.0",
+  "description": "为各大网页AI自动提取提问对话，并生成可以上下快速跳转的侧边导航目录。支持 ChatGPT, Claude, Gemini, Kimi 等。",
+  "author": "Li Ning",
+  "permissions": [],
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "content_scripts": [
     {
       "matches": [
-        "https://gemini.google.com/*",
-        "https://app.khoj.dev/*",
+        "https://chat.openai.com/*",
         "https://chatgpt.com/*",
-        "https://x.com/*",
-        "https://grok.com/*"
+        "https://gemini.google.com/*",
+        "https://kimi.moonshot.cn/*",
+        "https://kimi.com/*",
+        "https://www.kimi.com/*",
+        "https://tongyi.aliyun.com/*",
+        "https://qianwen.aliyun.com/*",
+        "https://qianwen.com/*",
+        "https://www.qianwen.com/*",
+        "https://www.doubao.com/*",
+        "https://doubao.com/*",
+        "https://claude.ai/*",
+        "https://app.khoj.dev/*"
       ],
       "js": [
         "content.js"
