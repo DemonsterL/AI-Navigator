@@ -1,162 +1,162 @@
 # AI-Navigator
 
-一款 AI 对话快速跳转浏览器扩展，用于提升多模型长对话场景下的浏览与定位效率，适用于 ChatGPT、Claude、Gemini、Kimi、通义千问、豆包、Khoj 等主流 AI 平台。
+A browser extension for quick navigation in AI chat conversations. Designed to improve browsing and positioning efficiency in long, multi-model conversations. Supports ChatGPT, Claude, Gemini, Kimi, Qianwen, Doubao, Khoj and more.
 
-## 功能特点
+## Features
 
-### 核心功能
-- **悬浮式导航面板** — 在页面侧边提供导航面板，默认半隐藏，鼠标悬停即可展开，不影响正常阅读
-- **智能识别问题** — 自动识别并汇总用户提出的每一条问题，生成清晰的对话索引列表
-- **快速跳转** — 点击任意条目即可平滑滚动至对应对话位置
-- **自动高亮** — 实时检测当前可视区域，对正在阅读的对话项进行自动高亮，帮助用户保持上下文感知
-- **搜索过滤** — 支持关键词搜索，快速定位历史对话
-- **实时更新** — 自动检测新消息，对话持续增长时自动更新导航内容，无需刷新页面
+### Core
+- **Floating Navigation Panel** — A sidebar navigation panel, semi-hidden by default, expands on hover without disrupting your reading
+- **Smart Question Detection** — Automatically identifies and indexes every user question, generating a clear conversation outline
+- **Quick Jump** — Click any item to smoothly scroll to the corresponding conversation position
+- **Auto Highlight** — Detects the current viewport in real time and highlights the active conversation item for context awareness
+- **Search & Filter** — Keyword search to quickly locate past conversations
+- **Live Updates** — Automatically detects new messages and updates the navigation as conversations grow, no page refresh needed
 
-### 面板控制
-- **拖动移动** — 通过拖动手柄自由调整面板垂直位置
-- **左右吸附** — 双击拖动手柄可切换面板到左侧或右侧，拖动释放时自动吸附到最近的边缘
-- **固定面板** — 在设置中开启固定模式，面板将始终保持展开状态
-- **透明度调节** — 支持 10%~100% 透明度无级调节，搭配毛玻璃背景模糊效果
-- **面板缩放** — 通过上下边缘拖拽调整面板高度
-- **输入框自动收缩** — 聚焦聊天输入框时面板自动收起，避免遮挡
+### Panel Controls
+- **Drag to Move** — Freely adjust the panel's vertical position via the drag handle
+- **Edge Snapping** — Double-click the drag handle to toggle between left and right sides; the panel auto-snaps to the nearest edge on release
+- **Pin Panel** — Enable pin mode in settings to keep the panel permanently expanded
+- **Opacity Control** — Stepless opacity adjustment from 10% to 100%, with frosted glass backdrop blur
+- **Panel Resize** — Drag the top or bottom edge to adjust panel height
+- **Auto-Collapse on Input Focus** — The panel automatically collapses when the chat input box is focused, preventing obstruction
 
-### 智能特性
-- **上下文用量估算** — 实时估算当前对话的 Token 用量，以进度条形式展示（绿/黄/橙/红四级颜色）
-- **图片消息识别** — 图片消息自动显示为 `[图片]` 标记
-- **完整文字提示** — 鼠标悬停导航条目时，以浮动提示框显示完整对话内容
-- **深色模式** — 自动适配系统深色模式，同时支持各平台自身的主题切换
-- **平台主题色** — 每个平台使用独立的高亮主题色，视觉风格与原平台保持一致
-- **设置持久化** — 面板位置、边缘、透明度、高度、固定状态等设置自动保存，刷新页面后自动恢复
-- **SPA 导航支持** — 自动检测页面 URL 变化，切换对话时自动刷新导航内容
+### Smart Features
+- **Context Usage Estimation** — Real-time token usage estimation displayed as a progress bar (green / yellow / orange / red)
+- **Image Message Detection** — Image messages are automatically labeled as `[Image]`
+- **Full Text Tooltip** — Hover over any navigation item to see the complete conversation text in a floating tooltip
+- **Dark Mode** — Automatically adapts to the system dark mode and supports each platform's own theme switching
+- **Platform Theme Colors** — Each platform uses its own accent color, visually consistent with the original platform
+- **Persistent Settings** — Panel position, edge, opacity, height, and pin state are automatically saved and restored across page refreshes
+- **SPA Navigation Support** — Automatically detects URL changes and refreshes navigation content when switching conversations
 
-## 支持平台
+## Supported Platforms
 
-| 平台 | 网址 |
-|------|------|
+| Platform | URL |
+|----------|-----|
 | **ChatGPT** | chatgpt.com / chat.openai.com |
 | **Claude** | claude.ai |
 | **Gemini** | gemini.google.com |
 | **Kimi** | kimi.com / www.kimi.com / kimi.moonshot.cn |
-| **通义千问** | tongyi.aliyun.com / qianwen.aliyun.com / qianwen.com |
-| **豆包** | doubao.com / www.doubao.com |
+| **Qianwen** | tongyi.aliyun.com / qianwen.aliyun.com / qianwen.com |
+| **Doubao** | doubao.com / www.doubao.com |
 | **Khoj** | app.khoj.dev |
 
-## 安装方法
+## Installation
 
 ### Chrome / Edge
-1. 打开浏览器，访问 `chrome://extensions/`（Edge 访问 `edge://extensions/`）
-2. 开启右上角的 **开发者模式**
-3. 点击 **加载已解压的扩展程序**
-4. 选择插件文件夹
+1. Open your browser and navigate to `chrome://extensions/` (Edge: `edge://extensions/`)
+2. Enable **Developer mode** in the top-right corner
+3. Click **Load unpacked**
+4. Select the extension folder
 
 ### Firefox
-1. 访问 `about:debugging#/runtime/this-firefox`
-2. 点击 **加载临时附加组件**
-3. 选择 `manifest.json` 文件
+1. Navigate to `about:debugging#/runtime/this-firefox`
+2. Click **Load Temporary Add-on**
+3. Select the `manifest.json` file
 
-## 使用说明
+## Usage
 
-- 插件会在对话页面侧边显示浮动导航面板
-- 鼠标悬停时面板完全展开，移开后自动收起
-- 点击条目可平滑跳转到对应对话位置
-- 当前正在阅读的对话会自动高亮
-- 使用搜索框可快速过滤历史对话
-- 点击设置按钮（齿轮图标）可调整固定、透明度等选项
-- 拖动面板顶部手柄可移动位置，双击可切换左右边缘
+- The extension displays a floating navigation panel on the side of AI chat pages
+- Hover to fully expand the panel; move away to auto-collapse
+- Click any item to smoothly scroll to that conversation
+- The currently visible conversation is automatically highlighted
+- Use the search box to quickly filter past conversations
+- Click the settings button (gear icon) to adjust pin, opacity, and other options
+- Drag the handle at the top of the panel to reposition; double-click to toggle left/right edge
 
 ---
 
-## 🔧 如何查看 DOM 选择器（详细教程）
+## \ud83d\udd27 How to Find DOM Selectors (Tutorial)
 
-如果插件无法识别用户消息，你需要手动查找正确的选择器。
+If the extension cannot detect user messages, you need to manually find the correct selectors.
 
-### 步骤 1：打开开发者工具
-- **快捷键**：按 `F12` 或 `Ctrl+Shift+I`（Mac: `Cmd+Option+I`）
-- 或右键页面 → 选择「检查」/「Inspect」
+### Step 1: Open Developer Tools
+- **Shortcut**: Press `F12` or `Ctrl+Shift+I` (Mac: `Cmd+Option+I`)
+- Or right-click the page and select "Inspect"
 
-### 步骤 2：选择元素
-1. 点击开发者工具左上角的 **选择元素按钮**（箭头图标）或按 `Ctrl+Shift+C`
-2. 在页面上点击你发送的 **用户消息**（不是 AI 回复）
-3. 开发者工具会自动定位到该元素的 HTML 代码
+### Step 2: Select an Element
+1. Click the **element selector button** (arrow icon) in the top-left of DevTools, or press `Ctrl+Shift+C`
+2. Click on one of **your messages** on the page (not the AI reply)
+3. DevTools will automatically navigate to that element's HTML code
 
-### 步骤 3：分析元素特征
-在 Elements 面板中，找到用户消息的父容器，观察它的特征：
+### Step 3: Analyze Element Attributes
+In the Elements panel, find the parent container of the user message and observe its attributes:
 
 ```html
-<!-- 示例：假设你看到这样的结构 -->
+<!-- Example: suppose you see this structure -->
 <div class="chat-message user-message" data-role="user">
-  <div class="message-content">你好</div>
+  <div class="message-content">Hello</div>
 </div>
 ```
 
-可以使用的选择器格式：
-- **class 属性**：`.user-message` 或 `[class*="user"]`（包含 user 的类名）
-- **data 属性**：`[data-role="user"]`
-- **组合选择器**：`.chat-message.user-message`
+Selector formats you can use:
+- **class attribute**: `.user-message` or `[class*="user"]`
+- **data attribute**: `[data-role="user"]`
+- **combined selector**: `.chat-message.user-message`
 
-### 步骤 4：测试选择器
-在开发者工具的 Console 面板中输入：
+### Step 4: Test the Selector
+In the DevTools Console panel, enter:
 ```javascript
-document.querySelectorAll('你的选择器')
+document.querySelectorAll('your-selector')
 ```
-如果返回的元素数量等于你发送的消息数，说明选择器正确。
+If the number of returned elements equals the number of messages you sent, the selector is correct.
 
-### 步骤 5：更新代码
-打开 `content.js`，找到对应平台的 `selectors` 数组，添加新选择器：
+### Step 5: Update the Code
+Open `content.js`, find the `selectors` array for the corresponding platform, and add the new selector:
 ```javascript
 kimi: {
   selectors: [
-    '你找到的新选择器',  // 添加到这里
-    // ... 其他选择器
+    'your-new-selector',  // add here
+    // ... other selectors
   ],
 }
 ```
 
-> 💡 **调试提示**：在浏览器控制台输入 `aiNavDebug()` 可查看当前平台的选择器匹配情况。
+> \ud83d\udca1 **Debug Tip**: Type `aiNavDebug()` in the browser console to check selector matches for the current platform.
 
 ---
 
-## 📦 插件上架指南
+## \ud83d\udce6 Store Submission Guide
 
 ### Chrome Web Store
 
-1. **注册开发者账号**
-   - 访问 [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
-   - 需要支付 **$5 一次性注册费**（需要信用卡）
+1. **Register a Developer Account**
+   - Visit [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
+   - One-time **$5 registration fee** required (credit card needed)
 
-2. **准备材料**
-   - 插件 ZIP 包（将整个文件夹打包）
-   - 128×128 图标
-   - 至少 1 张 1280×800 或 640×400 的截图
-   - 详细描述（支持多语言）
+2. **Prepare Materials**
+   - Extension ZIP package (zip the entire folder)
+   - 128\u00d7128 icon
+   - At least 1 screenshot at 1280\u00d7800 or 640\u00d7400
+   - Detailed description (multi-language supported)
 
-3. **提交审核**
-   - 登录后点击「New Item」上传 ZIP
-   - 填写商品详情、截图、定价（免费）
-   - 提交审核，通常 1-3 个工作日
+3. **Submit for Review**
+   - Click "New Item" and upload the ZIP
+   - Fill in listing details, screenshots, pricing (free)
+   - Review typically takes 1-3 business days
 
 ### Microsoft Edge Add-ons
 
-1. **注册开发者账号**
-   - 访问 [Edge Add-ons Developer Dashboard](https://partner.microsoft.com/dashboard/microsoftedge)
-   - **免费注册**，使用 Microsoft 账号
+1. **Register a Developer Account**
+   - Visit [Edge Add-ons Developer Dashboard](https://partner.microsoft.com/dashboard/microsoftedge)
+   - **Free registration** with a Microsoft account
 
-2. **准备材料**
-   - 与 Chrome 相同，Manifest V3 插件可直接使用
-   - 需要隐私政策 URL（可用 GitHub Gist 创建）
+2. **Prepare Materials**
+   - Same as Chrome; Manifest V3 extensions work directly
+   - Privacy policy URL required (can use a GitHub Gist)
 
-3. **提交审核**
-   - 上传 ZIP，填写信息
-   - 审核时间约 1-7 个工作日
+3. **Submit for Review**
+   - Upload ZIP and fill in details
+   - Review typically takes 1-7 business days
 
 ### Firefox Add-ons (AMO)
 
-1. **注册开发者账号**
-   - 访问 [Firefox Add-on Developer Hub](https://addons.mozilla.org/developers/)
-   - **免费注册**，使用 Firefox 账号
+1. **Register a Developer Account**
+   - Visit [Firefox Add-on Developer Hub](https://addons.mozilla.org/developers/)
+   - **Free registration** with a Firefox account
 
-2. **修改 manifest.json**
-   Firefox 需要添加 `browser_specific_settings`：
+2. **Modify manifest.json**
+   Firefox requires `browser_specific_settings`:
    ```json
    {
      "browser_specific_settings": {
@@ -168,12 +168,12 @@ kimi: {
    }
    ```
 
-3. **提交审核**
-   - 上传 ZIP，可选择「Listed」（公开）或「Unlisted」（仅链接访问）
-   - 自动审核通常几分钟，人工审核 1-2 周
+3. **Submit for Review**
+   - Upload ZIP; choose "Listed" (public) or "Unlisted" (link-only access)
+   - Automated review usually takes minutes; manual review 1-2 weeks
 
 ---
 
-## 许可证
+## License
 
 MIT License
