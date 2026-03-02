@@ -1,6 +1,6 @@
-# JumpAI
+# AI-Navigator
 
-这是一个 AI 对话快速跳转浏览器扩展，用于提升多模型长对话场景下的浏览与定位效率，适用于 ChatGPT、Gemini、Kimi、通义千问、豆包等主流 AI 平台。
+这是一个 AI 对话快速跳转浏览器扩展，用于提升多模型长对话场景下的浏览与定位效率，适用于 ChatGPT、Gemini、Claude Code，通义千问、豆包、Kimi等主流 AI 平台。
 
 ## 功能特点
 
@@ -154,3 +154,4 @@ kimi: {
 ## 许可证
 
 MIT License
+
